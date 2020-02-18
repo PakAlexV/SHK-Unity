@@ -9,9 +9,21 @@ public class PlayerController : MonoBehaviour
     
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.W)) { _selfTransform.Translate(0, _speedPlayer * Time.deltaTime, 0); }       
-        if (Input.GetKey(KeyCode.S)) { _selfTransform.Translate(0, -_speedPlayer * Time.deltaTime, 0); }
-        if (Input.GetKey(KeyCode.A)) { _selfTransform.Translate(-_speedPlayer * Time.deltaTime, 0, 0); }
-        if (Input.GetKey(KeyCode.D)) { _selfTransform.Translate(_speedPlayer * Time.deltaTime, 0, 0); }        
+        if (Input.GetKey(KeyCode.W))
+        {
+            _selfTransform.Translate(0, _speedPlayer * Time.deltaTime, 0);
+        }       
+        if (Input.GetKey(KeyCode.S))
+        {
+            _selfTransform.Translate(0, -_speedPlayer * Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            _selfTransform.Translate(-_speedPlayer * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            _selfTransform.Translate(_speedPlayer * Time.deltaTime, 0, 0);
+        }        
     }
 }

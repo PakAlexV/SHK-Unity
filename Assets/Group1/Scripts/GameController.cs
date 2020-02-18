@@ -33,7 +33,10 @@ public class GameController : MonoBehaviour
         {
             Destroy(enemy);
             _enemys.Remove(enemy);        
-            if (_enemys.Count == 0) { OnGameEnd(); }
+            if (_enemys.Count == 0)
+            {
+                OnGameEnd();
+            }
         }
     }
 }

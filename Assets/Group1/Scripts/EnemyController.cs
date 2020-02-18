@@ -23,7 +23,10 @@ public class EnemyController : MonoBehaviour
     private void MoveEnemy()
     {
         _selfTransform.position = Vector3.MoveTowards(_selfTransform.position, _nextPosition, _speed * Time.deltaTime);
-        if (_selfTransform.position == _nextPosition) { NextPositionInit(); }      
+        if (_selfTransform.position == _nextPosition)
+        {
+            NextPositionInit();
+        }      
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -32,7 +35,10 @@ public class EnemyController : MonoBehaviour
         {
             Vector3 playerPosition = collision.GetComponent<Transform>().position;
             Vector3 enemyPosition = gameObject.GetComponent<Transform>().position;
-            if (Vector3.Distance(playerPosition, enemyPosition) < 0.2f) { _controller.EnemyKill(gameObject); }
+            if (Vector3.Distance(playerPosition, enemyPosition) < 0.2f)
+            {
+                _controller.EnemyKill(gameObject);
+            }
         }
     }
 
