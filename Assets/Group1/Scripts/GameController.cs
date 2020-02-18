@@ -4,35 +4,39 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public static GameController controller;
+    [SerializeField] private GameObject _gameOverLayer;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _enemyPrefab; 
+    [SerializeField] private int _countEnemy = 4;
+    [SerializeField] private int _rangePositionEnemy = 4;
+    private List<GameObject> _enemys = new List<GameObject>();
 
-    public GameObject go;
-    public GameObject a;
-    public GameObject[] B;
+    public int RangePositionEnemy { get => _rangePositionEnemy; }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        controller = this;
-    }
-
-    public void End()
-    {
-        go.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update(){
-        foreach (var b in B)
+        for (int i = 0; i < _countEnemy; i++)
         {
-            if (b == null)
-                continue;
+            GameObject enemy = Instantiate(_enemyPrefab, Random.insideUnitCircle * _rangePositionEnemy, Quaternion.identity);
+            _enemys.Add(enemy);
+        }
+    }
 
-                if (Vector3.Distance(a.gameObject.gameObject.GetComponent<Transform>().position, b.gameObject.gameObject.transform.position) < 0.2f)
-                {
-                    a.SendMessage("SendMEssage", b);
-                }
+    private void OnGameEnd()
+    {
+        _gameOverLayer.SetActive(true);
+    }
 
+    public void EnemyKill(GameObject enemy)
+    {
+        if (enemy != null)
+        {
+            Destroy(enemy);
+            _enemys.Remove(enemy);        
+            if (_enemys.Count == 0)
+            {
+                OnGameEnd();
+            }
         }
     }
 }
